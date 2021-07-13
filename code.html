@@ -22,8 +22,8 @@
   <!-- Nav Section -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="index.html"><img src="img/favicon-32x32.png" class="d-inline-block" alt="Ivan White Logo"
-          width="30" height="24"> Was It A Cat I Saw?</a>
+      <a class="navbar-brand" href="index.html"><img src="img/favicon-32x32.png" class="d-inline-block"
+          alt="Ivan White Logo" width="30" height="24"> Was It A Cat I Saw?</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -57,17 +57,58 @@
       </h2>
       <div class="row row-cols-1 row-cols-lg-2">
         <div class="col col-lg-4">
-          <h5>Write a function to get the values entered by the user, parse them into ints, then call generateNumbers
+          <h5>getValue gets the string the user entered. Removes characters, numbers, and spaces.
           </h5>
           <h5>______________________________________</h5>
-          <h5>Generate the numbers using a for loop</h5>
+          <h5>reverseString reverses it.</h5>
           <h5>______________________________________</h5>
-          <h5>Display the numbers on the screen, making the even ones <strong>BOLD</strong></h5>
+          <h5>displayString displays the palindrome.</h5>
         </div>
         <div class="col col-lg-8">
           <pre class="line-numbers language-javascript"><code class="language-javascript">
-function helloWorld() {
-alert("Hello World!")
+//Get the value from the string
+function getValue() {
+document.getElementById("alert-success").classList.add("invisible")
+document.getElementById("alert-fail").classList.add("invisible")
+
+let userString = document.getElementById("userString").value
+
+userString = userString.toLowerCase()
+
+// Remove non alphanumeric characters and numbers
+userString = userString.replace(/[^a-z]/gi, '')
+
+let reversedString = reverseString(userString)
+
+let isPalindrome = false
+
+if (userString == reversedString) {
+isPalindrome = true
+}
+
+displayString(reversedString, isPalindrome)
+}
+
+//Reverse the string
+function reverseString(userString) {
+let revString = []
+
+for (let i = userString.length - 1; i >= 0; i--) {
+revString += userString[i]
+}
+
+return revString
+}
+
+//Display the message with the reversed string
+function displayString(revString, isPalindrome) {
+if (isPalindrome == true) {
+document.getElementById("msg-success").innerHTML = `${revString}`
+document.getElementById("alert-success").classList.remove("invisible")
+} else {
+document.getElementById("msg-fail").innerHTML = `${revString}`
+document.getElementById("alert-fail").classList.remove("invisible")
+}
 }
           </code>
         </pre>
